@@ -1,10 +1,13 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS, cross_origin
 import pandas as pd
 import numpy as np
 from gsheets import Sheets
 import random
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 def getSheets():
     sheets = Sheets.from_files('client_secret.json','storage.json')
@@ -15,11 +18,8 @@ def getSheets():
     df = df.iloc[1:]
     return df
 
-@app.route('/')
-def hello_world():
-    return 'Hello there!'
-
 @app.route('/greetings', methods=['GET'])
+@cross_origin()
 def query_greetings():
     df = getSheets()
     greetings = []
@@ -35,6 +35,7 @@ def query_greetings():
     return jsonify(greetings)
 
 @app.route('/quote', methods=['GET'])
+@cross_origin()
 def query_quotes():
     df = getSheets()
     quotes = df['quotes']
@@ -43,6 +44,7 @@ def query_quotes():
 
 # A welcome message to test our server
 @app.route('/')
+@cross_origin()
 def index():
     return "<h1>Welcome to the Josh Valencia API!!</h1>"
 
