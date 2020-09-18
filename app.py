@@ -32,6 +32,18 @@ def query_greetings():
             'message': messages[i],
             'name': names[i]
         })
+    random.shuffle(greetings)
+    finalGreetings = []
+    greetingArray = []
+    count = 0
+    for g in greetings:
+        greetingArray.append(g)
+        if(count % 3 == 0):
+            finalGreetings.append(greetingArray)
+            greetingArray = []
+    if(len(greetingArray > 0)):
+        finalGreetings.append(greetingArray)
+
     return jsonify(greetings)
 
 @app.route('/quote', methods=['GET'])
