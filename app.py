@@ -44,7 +44,7 @@ def query_greetings():
     if(len(greetingArray > 0)):
         finalGreetings.append(greetingArray)
 
-    return jsonify(greetings)
+    return jsonify(finalGreetings)
 
 @app.route('/quote', methods=['GET'])
 @cross_origin()
