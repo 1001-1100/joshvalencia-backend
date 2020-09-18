@@ -50,9 +50,10 @@ def query_greetings():
 @cross_origin()
 def query_quotes():
     df = getSheets()
-    quotes = df['quotes']
-    index = random.randint(1, len(quotes))
-    return jsonify({'quote': quotes[index]})
+    quotes = []
+    for q in df['quotes']:
+        quotes.append(q)
+    return jsonify(quotes)
 
 # A welcome message to test our server
 @app.route('/')
