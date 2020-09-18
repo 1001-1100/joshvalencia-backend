@@ -41,9 +41,8 @@ def query_greetings():
         if(count % 3 == 0):
             finalGreetings.append(greetingArray)
             greetingArray = []
-    if(len(greetingArray > 0)):
+    if(len(greetingArray) > 0):
         finalGreetings.append(greetingArray)
-
     return jsonify(finalGreetings)
 
 @app.route('/quote', methods=['GET'])
