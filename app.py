@@ -41,4 +41,11 @@ def query_quotes():
     index = random.randint(1, len(quotes))
     return jsonify({'quote': quotes[index]})
 
-app.run()
+# A welcome message to test our server
+@app.route('/')
+def index():
+    return "<h1>Welcome to the Josh Valencia API!!</h1>"
+
+if __name__ == '__main__':
+    # Threaded option to enable multiple instances for multiple user access support
+    app.run(threaded=True, port=5000)
