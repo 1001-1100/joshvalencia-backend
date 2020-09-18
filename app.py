@@ -41,6 +41,7 @@ def query_greetings():
         if(count % 3 == 0):
             finalGreetings.append(greetingArray)
             greetingArray = []
+        count += 1
     if(len(greetingArray) > 0):
         finalGreetings.append(greetingArray)
     return jsonify(finalGreetings)
